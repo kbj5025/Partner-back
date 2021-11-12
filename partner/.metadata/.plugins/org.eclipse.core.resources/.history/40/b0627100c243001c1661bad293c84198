@@ -62,12 +62,6 @@ public class EventController {
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
-		findItem.setTitle(event.getTitle());
-		findItem.setDescription(event.getDescription());
-		findItem.setPhotoUrl(event.getPhotoUrl());
-		findItem.setClinic(event.getClinic());
-		findItem.setPrice(event.getPrice());
-		findItem.setKeyword(event.getKeyword());
 		return findItem;
 	}
 	

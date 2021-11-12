@@ -40,13 +40,8 @@ public class EventController {
 		Long currentId = maxId.incrementAndGet();
 		// 입력받은 데이터로 객체를 생성
 		Event eventItem = Event.builder().id(currentId).title(event.getTitle()).description(event.getDescription()).photoUrl(event.getPhotoUrl()).clinic(event.getClinic()).keyword(event.getKeyword()).price(event.getPrice()).build();
-		// 목록 객체 추가
+		// 추가된 객체를 반환
 		events.put(currentId, eventItem);
-
-		// 리소스 생성됨
-		// res.setStatus(201);
-		res.setStatus(HttpServletResponse.SC_CREATED);
-		
 		return eventItem;
 	}
 	
@@ -62,12 +57,6 @@ public class EventController {
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
-		findItem.setTitle(event.getTitle());
-		findItem.setDescription(event.getDescription());
-		findItem.setPhotoUrl(event.getPhotoUrl());
-		findItem.setClinic(event.getClinic());
-		findItem.setPrice(event.getPrice());
-		findItem.setKeyword(event.getKeyword());
 		return findItem;
 	}
 	
