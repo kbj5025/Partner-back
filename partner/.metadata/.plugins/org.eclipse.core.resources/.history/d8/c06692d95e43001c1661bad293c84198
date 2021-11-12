@@ -1,0 +1,27 @@
+package com.example.minam.controller;
+
+import java.util.Collection;
+import java.util.Date;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class EventController {
+	public ConcurrentSkipListMap<Long,Event> events = new ConcurrentSkipListMap<Long,Event>();
+	
+	//id값 생성에 사용할 변수
+	public AtomicLong maxId = new AtomicLong();
+	
+	// 목록조회
+	@GetMapping(value = "/events")
+	public Collection<Event> getEvents() {
+		Long currentId = maxId.incrementAndGet();
+		Event event = Event.builder().id(currentId).memo("test").createdTime(new Date().getTime()).build();
+		events.put(currentId, event);
+		
+		return events.descendingMap().values();
+	}
+}

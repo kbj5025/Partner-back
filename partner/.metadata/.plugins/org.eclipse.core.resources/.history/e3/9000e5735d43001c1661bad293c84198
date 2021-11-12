@@ -1,0 +1,13 @@
+package com.example.minam.controller;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data @Builder @NoArgsConstructor @AllArgsConstructor
+public class Event {
+	private long id;
+	private String memo;
+	private long createdTime;
+}
