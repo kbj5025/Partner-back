@@ -1,0 +1,1 @@
+ssh -i "C:partner.pem" ubuntu@ec2-3-36-125-183.ap-northeast-2.compute.amazonaws.com

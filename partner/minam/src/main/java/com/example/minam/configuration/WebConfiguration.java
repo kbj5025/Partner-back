@@ -13,7 +13,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 			.addMapping("/**")
 			.allowedOrigins(
 					"http://localhost:3000",
-					"http:ec2-3-38-100-201.ap-northeast-2.compute.amazonaws.com")
+					"http:ec2-3-36-125-183.ap-northeast-2.compute.amazonaws.com")
 			.allowedMethods("*");
 	}
 }

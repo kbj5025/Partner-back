@@ -1,0 +1,1 @@
+scp -i "c:partner.pem" -r ./build/libs/*.jar ubuntu@ec2-3-36-125-183.ap-northeast-2.compute.amazonaws.com:/home/ubuntu/app/partner
