@@ -15,4 +15,8 @@ spring:
     show-sql: true
     generate-ddl: true
     # generate-ddl : create SQL 명령어를 자동으로 수행함, auto-migration
+  rabbitmq:
+    addresses: amqps://b-f5b27dbc-5576-4d4f-849d-03c019cced61.mq.ap-northeast-2.amazonaws.com:5671
+    username: rabbitmq
+    password: password123!
     

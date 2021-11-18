@@ -25,9 +25,11 @@ public class Event {
 	private String clinic;
 	private String keyword;
 	private String price;
+	
 	@Column(columnDefinition = "TEXT")
 	private String photoUrl;
 	private String fileType;
 	private String fileName;
+	private Long createdTime;
 	
 }

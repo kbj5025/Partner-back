@@ -1,5 +1,7 @@
 package com.example.minam.controller;
 
+
+import java.util.Date;
 import java.util.List;
 
 import java.util.Optional;
@@ -20,27 +22,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventController {
 	
 private EventRepository repo;
+private EventService service;
 	
 	@Autowired
-	public EventController(EventRepository repo) {
+	public EventController(EventRepository repo, EventService service) {
 		this.repo = repo;
+		this.service = service;
 	}
 	
 	// 목록조회
 	// GET/events
 	@GetMapping(value = "/events")
-	public List<Event> getEvents() throws InterruptedException {
+	public List<Event> getEvents()  {
 		return repo.findAll(Sort.by("id").descending());
 	}
 	
 	// 1건 추가
 	// POST / events
 	@PostMapping(value = "/events")
-	public Event addEvent(@RequestBody Event event, HttpServletResponse res) throws InterruptedException {
+	public Event addEvent(@RequestBody Event event, HttpServletResponse res){
 		
 		// 입력받은 데이터로 객체를 생성
 		Event eventItem = Event.builder().title(event.getTitle()).description(event.getDescription()).photoUrl(event.getPhotoUrl()).fileType(event.getFileType())
-				.fileName(event.getFileName()).clinic(event.getClinic()).keyword(event.getKeyword()).price(event.getPrice()).build();
+				.fileName(event.getFileName()).clinic(event.getClinic()).keyword(event.getKeyword()).price(event.getPrice()).createdTime(new Date().getTime()).build();
 		// 목록 객체 추가
 		Event eventSaved = repo.save(eventItem);
 
@@ -48,13 +52,15 @@ private EventRepository repo;
 		// res.setStatus(201);
 		res.setStatus(HttpServletResponse.SC_CREATED);
 		
+		service.sendEvent(eventItem);
+		
 		return eventSaved;
 	}
 	
 	// 1건 수정
 	// PUT /events/1 , id값이 path variable로
 	@PutMapping(value = "/events/{id}")
-	public Event modifyEvent(@PathVariable long id, @RequestBody Event event, HttpServletResponse res) throws InterruptedException {
+	public Event modifyEvent(@PathVariable long id, @RequestBody Event event, HttpServletResponse res) {
 		
 		Optional<Event> eventItem = repo.findById(id);
 		if(eventItem.isEmpty()) {
@@ -72,7 +78,9 @@ private EventRepository repo;
 		eventToSave.setPrice(event.getPrice());
 		eventToSave.setKeyword(event.getKeyword());
 		eventToSave.setFileType(event.getFileType());	
-		eventToSave.setFileName(event.getFileName());	
+		eventToSave.setFileName(event.getFileName());
+		
+		
 	
 		Event eventSaved = repo.save(eventToSave);
 		
@@ -82,16 +90,11 @@ private EventRepository repo;
 	// 1건 삭제
 	// DELETE /events/1 ->id가 1인 항목 삭제
 	@DeleteMapping(value= "/events/{id}")
-	public boolean removeTodo(@PathVariable long id, HttpServletResponse res) throws InterruptedException {
+	public boolean removeTodo(@PathVariable long id) {
 		
-		Optional<Event> event = repo.findById(id);
-		// 해당 id의 데이터가 없으면
-		if (event.isEmpty()) {
-			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			return false;
-		}
+		System.out.println(id);
 		// 삭제 수행
-		repo.deleteById(id);
+		 repo.deleteById(id);
 		
 		return true;
 	}

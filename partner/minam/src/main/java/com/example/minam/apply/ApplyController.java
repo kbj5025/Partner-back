@@ -1,13 +1,19 @@
 package com.example.minam.apply;
 
 import java.util.List;
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+
 
 
 @RestController
@@ -43,4 +49,22 @@ private ApplyRepository repo;
 			
 			return applySaved;
 		}
+		
+		// 1건 삭제
+		// DELETE 
+		@DeleteMapping(value= "/applys/{id}")
+		public boolean removeTodo(@PathVariable long id, HttpServletResponse res) throws InterruptedException {
+			
+			Optional<Apply> apply = repo.findById(id);
+			// 해당 id의 데이터가 없으면
+			if (apply.isEmpty()) {
+				res.setStatus(HttpServletResponse.SC_NOT_FOUND);
+				return false;
+			}
+			// 삭제 수행
+			repo.deleteById(id);
+			
+			return true;
+		}
+		
 }
