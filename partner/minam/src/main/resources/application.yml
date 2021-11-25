@@ -1,3 +1,5 @@
+server:
+  port: 8080
 # yml(yaml, 야믈(야멀))
 # 시스템 설정에 사용하는 파일
 spring:

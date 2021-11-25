@@ -25,5 +25,6 @@ public class Reserve {
 	private String seeTime;
 	private String eventId;
 	
+	
 }
 
