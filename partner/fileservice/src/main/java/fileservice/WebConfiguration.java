@@ -24,8 +24,8 @@ public class WebConfiguration implements WebMvcConfigurer {
 //						"http://15.164.211.184:3000", "http://15.164.211.184",
 //						"http://ec2-15-164-211-184.ap-northeast-2.compute.amazonaws.com:3000", 
 //						"http://ec2-15-164-211-184.ap-northeast-2.compute.amazonaws.com",
-						"http://3.38.100.201:3000", "http://3.38.100.201",
-						"http://ec2-3-36-125-183.ap-northeast-2.compute.amazonaws.com:3000", 
+//						"http://3.36.125.183:3000", "http://3.36.125.183",
+//						"http://ec2-3-36-125-183.ap-northeast-2.compute.amazonaws.com:3000", 
 						"http://ec2-3-36-125-183.ap-northeast-2.compute.amazonaws.com")
 				// 공유정책으로 허용할 HTTP메서드
 				.allowedMethods("*"); // 전체메서드를 허용(GET, POST, PUT....)

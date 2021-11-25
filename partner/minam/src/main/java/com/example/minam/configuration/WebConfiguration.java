@@ -21,8 +21,8 @@ public class WebConfiguration implements WebMvcConfigurer {
 //	                  "http://ec2-15-164-211-184.ap-northeast-2.compute.amazonaws.com:3000",
 //	                  "http://ec2-15-164-211-184.ap-northeast-2.compute.amazonaws.com",
 	                  // ∫¿¡ÿ
-	                  "http://2-3-36-125-183:3000", "http://2-3-36-125-183",
-	                  "http:ec2-3-36-125-183.ap-northeast-2.compute.amazonaws.com:3000",
+//	                  "http://3.36.125.183:3000", "http://3.36.125.183",
+//	                  "http:ec2-3-36-125-183.ap-northeast-2.compute.amazonaws.com:3000",
 	                  "http:ec2-3-36-125-183.ap-northeast-2.compute.amazonaws.com")
 			.allowedMethods("*");
 	}
